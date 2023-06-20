@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   data["GET"] = req.query;
   // res.sendFile(__dirname + '/static/index.html');
   // res.sendFile(__dirname+'index.html');
-       let filePath = path.join(__dirname, "static/index.html");
+       let filePath = path.join(__dirname);
   res.sendFile(filePath);
 });
 
