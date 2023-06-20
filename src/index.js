@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors({
 //   origin: "https://example.com"
 }));
-
+app.use(express.static('static'));
 // Parse request body and extended the size to 1mb
 
 app.use(bodyParser.json({ limit: '1mb' }));
@@ -20,11 +20,11 @@ app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
 app.get("/", (req, res) => {
   let data = {};
   data["GET"] = req.query;
-  // res.sendFile(__dirname + '/static/index.html');
+  res.sendFile(__dirname + '/static/index.html');
   // res.sendFile(__dirname+'index.html');
   //      let filePath = path.join(__dirname);
   // res.sendFile(filePath);
-res.send(__dirname);
+// res.send(__dirname);
 });
 
 // POST route
