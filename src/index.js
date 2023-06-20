@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   data["GET"] = req.query;
   // res.sendFile(__dirname + '/static/index.html');
   // res.sendFile(__dirname+'index.html');
-  res.send(__dirname);
+  res.sendFile(__dirname);
 });
 
 // POST route
