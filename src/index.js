@@ -1,11 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-//requiring path and fs modules
-const path = require('path');
-const fs = require('fs');
-//joining path of directory 
-const directoryPath = path.join(__dirname);
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -28,17 +24,7 @@ app.get("/", (req, res) => {
   // res.sendFile(__dirname+'index.html');
   //      let filePath = path.join(__dirname);
   // res.sendFile(filePath);
-  fs.readdir(directoryPath, function (err, files) {
-    //handling error
-    if (err) {
-        return console.log('Unable to scan directory: ' + err);
-    } 
-    //listing all files using forEach
-    files.forEach(function (file) {
-        // Do whatever you want to do with the file
-        console.log(file); 
-    });
-});
+res.send(__dirname);
 });
 
 // POST route
