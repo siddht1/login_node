@@ -12,7 +12,9 @@ app.use(cors({
 }));
 
 // Define the static files directory
-app.use(express.static(path.join(__dirname, "static")));
+app.use(express.static(path.join(__dirname, "../static")));
+
+// app.use(express.static(path.join(__dirname, "static")));
 
 // Parse request body and extended the size to 1mb
 app.use(bodyParser.json({ limit: '1mb' }));
