@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));
 app.get("/", (req, res) => {
   let data = {};
   data["GET"] = req.query;
-  res.send('login.html');
+  res.sendFile(__dirname + '/static/index.html');
 });
 
 // POST route
