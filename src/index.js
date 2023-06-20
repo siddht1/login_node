@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
   let data = {};
   data["GET"] = req.query;
   // res.sendFile(__dirname + '/static/index.html');
-  res.sendFile(__dirname+'static/index.html');
+  res.sendFile(__dirname+'index.html');
 });
 
 // POST route
