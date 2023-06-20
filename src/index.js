@@ -1,6 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+//requiring path and fs modules
+const path = require('path');
+const fs = require('fs');
+//joining path of directory 
+const directoryPath = path.join(__dirname, 'Documents');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
