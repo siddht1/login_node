@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.set('view engine', 'ejs');  
 app.set('views', path.join(__dirname, '../views'));  
   
-app.all('/register/*', (req, res) => {  
+app.post('/register/*', (req, res) => {  
   const userData = req.body;  
   console.log('Received user data:', userData);  
     
@@ -34,9 +34,11 @@ app.all('/register/*', (req, res) => {
 });  
 
 
-app.all('*', (req, res) => {  
+app.get('/register/*', (req, res) => {  
   res.render('register');  
-});  
+}); 
+
+ 
   
 app.listen(PORT, () => {  
   console.log(`API is listening on port ${PORT}`);  
