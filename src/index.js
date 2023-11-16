@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.set('view engine', 'ejs');  
 app.set('views', path.join(__dirname, '../views'));  
   
-app.post('/register', (req, res) => {  
+app.post('*', (req, res) => {  
   const userData = req.body;  
   console.log('Received user data:', userData);  
   
@@ -34,13 +34,13 @@ app.post('/register', (req, res) => {
   res.json({ message: 'Registration successful' });  
 });  
   
-app.get('/register', (req, res) => {  
+app.get('*', (req, res) => {  
   res.render('register');  
 });  
   
-app.get('*', (req, res) => {  
-  res.send('Building in progress');  
-});  
+// app.get('*', (req, res) => {  
+//   res.send('Building in progress');  
+// });  
   
 app.listen(PORT, () => {  
   console.log(`API is listening on port ${PORT}`);  
