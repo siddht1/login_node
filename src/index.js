@@ -16,13 +16,24 @@ app.use(morgan('combined'));
 app.use(helmet());  
 
 const ulidgen=ulid();
-  
+ 
+
+app.use(express.static(path.join(__dirname, '../public')));
+app.use(bodyParser.json({ limit: '1mb' }));
+app.use(bodyParser.urlencoded({ limit: '1mb', extended: true }));  
 
 // root
 
+
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '../views'));
+const registerEjsPath = path.join(__dirname, "../views/register.ejs");
+
 app.all("*", (req, res) => {
-  res.send("<h2>It's Working!</h2>");
+  res.render(registerEjsPath);
 });
+
 
 
 app.listen(PORT, () => {
