@@ -38,6 +38,24 @@ var questions = [
   
   // when all the questions have been answered
   function done() {
+    fetch('/register', {  
+    method: 'POST',  
+    headers: {  
+      'Content-Type': 'application/json'  
+    },  
+    body: JSON.stringify(questions.map(q => ({ question: q.question, value: q.value })))  
+  })  
+    .then(response => {  
+      // Handle the response from the server  
+      if (response.ok) {  
+        console.log('User data sent successfully');  
+      } else {  
+        console.log('Failed to send user data');  
+      }  
+    })  
+    .catch(error => {  
+      console.log('Error occurred while sending user data', error);  
+    });  
     
     // remove the box if there is no next question
     register.className = 'close'
