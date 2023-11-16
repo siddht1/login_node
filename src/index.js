@@ -16,29 +16,31 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());  
 app.use(morgan('combined'));  
 app.use(helmet());  
+app.use(bodyParser.urlencoded({ extended: true }));  
+app.use(bodyParser.json());  
   
 app.use(express.static(path.join(__dirname, '../public')));  
   
 app.set('view engine', 'ejs');  
 app.set('views', path.join(__dirname, '../views'));  
   
-app.post('/register/*', (req, res) => {  
+app.post('/register', (req, res) => {  
   const userData = req.body;  
   console.log('Received user data:', userData);  
-    
+  
   // Perform any necessary operations with the user data  
-    
+  
   // Send a response back to the client  
- res.json({ message: 'Registration successful' });  
-
+  res.json({ message: 'Registration successful' });  
 });  
-
-
-app.get('/register/*', (req, res) => {  
+  
+app.get('/register', (req, res) => {  
   res.render('register');  
-}); 
-
- 
+});  
+  
+app.get('*', (req, res) => {  
+  res.send('Building in progress');  
+});  
   
 app.listen(PORT, () => {  
   console.log(`API is listening on port ${PORT}`);  
