@@ -48,11 +48,9 @@ app.post('*', (req, res) => {
     uuid: ulidgen,
     created_at: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }),
     datum:userData
-
-    // date_time: new Date().toLocaleString(undefined, { timeZone: 'user' }) // Change the date time to user's time
   };
 
-  const { data, error } = await supabase.from('register_check').insert([log]);
+  const { data, error } = await supabase.from('register_check').insert([log]); 
 
   if (error) {
     console.error('Error inserting log:', error);
