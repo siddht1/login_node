@@ -71,6 +71,48 @@ var questions = [
     
   // }
   // when all the questions have been answered  
+// function done() {  
+//   // Create an object to hold the user data  
+//   const userData = {};  
+  
+//   // Loop through the questions and add the question value to the userData object  
+//   questions.forEach((question) => {  
+//     userData[question.question] = question.value;  
+//   });  
+  
+//   // Send a POST request to the server  
+//   fetch('/register/data', {  
+//     method: 'POST',  
+//     headers: {  
+//       'Content-Type': 'application/json'  
+//     },  
+//     body: JSON.stringify(userData)  
+//   })  
+//     .then(response => {  
+//       // Handle the response from the server  
+//       if (response.ok) {  
+//         console.log('User data sent successfully');  
+//       } else {  
+//         console.log('Failed to send user data');  
+//       }  
+//     })  
+//     .catch(error => {  
+//       console.log('Error occurred while sending user data', error);  
+//     });  
+  
+//   // remove the box if there is no next question  
+//   register.className = 'close';  
+  
+//   // add the h1 at the end with the welcome text  
+//   var h1 = document.createElement('h1');  
+//   h1.appendChild(document.createTextNode('Welcome ' + questions[0].value + '' +'to KIVTECHS.cloud'));  
+//     h1.appendChild(document.createTextNode('Your Account is being created at the moment '));  
+//   setTimeout(function() {  
+//     register.parentElement.appendChild(h1);  
+//     setTimeout(function() {h1.style.opacity = 1}, 50);  
+//   }, eTime);  
+// }  
+
 function done() {  
   // Create an object to hold the user data  
   const userData = {};  
@@ -105,11 +147,16 @@ function done() {
   
   // add the h1 at the end with the welcome text  
   var h1 = document.createElement('h1');  
-  h1.appendChild(document.createTextNode('Welcome ' + questions[0].value + '' +'to KIVTECHS.cloud'));  
-    h1.appendChild(document.createTextNode('Your Account is being created at the moment '));  
+  h1.appendChild(document.createTextNode('Welcome ' + questions[0].value + ' to KIVTECHS.cloud'));  
+  h1.appendChild(document.createTextNode('Your Account is being created at the moment '));  
   setTimeout(function() {  
     register.parentElement.appendChild(h1);  
-    setTimeout(function() {h1.style.opacity = 1}, 50);  
+    setTimeout(function() {  
+      h1.style.opacity = 1;  
+    }, 50);  
+    setTimeout(function() {  
+      window.location.href = 'https://catalona.kivtechs.cloud/'; 
+    }, 10000); // 10 seconds  
   }, eTime);  
 }  
 
