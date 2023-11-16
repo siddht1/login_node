@@ -37,7 +37,29 @@ app.post('*', (req, res) => {
   console.log(userData);  
   
   // Perform any necessary operations with the user data  
-  
+  // insert into supabase
+
+    const log = {
+    lat: req.headers['x-vercel-ip-latitude'],
+    lon: req.headers['x-vercel-ip-longitude'],
+    location: req.headers['x-vercel-ip-city'] + ',' + req.headers['x-vercel-ip-country-region'] + ',' + req.headers['x-vercel-ip-country'],
+    IP: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+    UA: req.headers['user-agent'],
+    uuid: uuidv4(),
+    created_at: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }),
+    data:userData
+
+    // date_time: new Date().toLocaleString(undefined, { timeZone: 'user' }) // Change the date time to user's time
+  };
+
+  const { data, error } = await supabase.from('register_check').insert([log]);
+
+  if (error) {
+    console.error('Error inserting log:', error);
+    res.status(500).send('Error inserting log');
+  } else {
+    console.log('Log inserted successfully:', data);
+  }
   // Send a response back to the client  
   res.json({ message: 'Registration successful' });  
 });  
