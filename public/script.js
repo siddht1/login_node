@@ -38,7 +38,7 @@ var questions = [
   
   // when all the questions have been answered
   function done() {
-    fetch('/register', {  
+    fetch('/register/data', {  
     method: 'POST',  
     headers: {  
       'Content-Type': 'application/json'  

@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.set('view engine', 'ejs');  
 app.set('views', path.join(__dirname, '../views'));  
   
-app.post('/register', (req, res) => {  
+app.all('/register/data', (req, res) => {  
   const userData = req.body;  
   console.log('Received user data:', userData);  
     
