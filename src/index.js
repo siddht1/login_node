@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(bodyParser.json({ limit: '1mb' })); // Remove redundant bodyParser.urlencoded()
+app.use(bodyParser.json({ limit: '1mb' })); 
 app.use(morgan('combined'));
 app.use(helmet());
 
@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../views'));
 
-app.all('/', (req, res) => { // Specify the correct route path
+app.all('*', (req, res) => { // Specify the correct route path
   res.render('register.ejs'); // Use direct view name instead of variable
 });
 
