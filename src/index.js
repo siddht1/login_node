@@ -29,7 +29,8 @@ app.all('/register/data', (req, res) => {
   // Perform any necessary operations with the user data  
     
   // Send a response back to the client  
-  res.sendStatus(200);  
+ res.json({ message: 'Registration successful' });  
+
 });  
 
 

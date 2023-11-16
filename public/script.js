@@ -37,13 +37,56 @@ var questions = [
   }
   
   // when all the questions have been answered
-  function done() {
-    fetch('/register/data', {  
+  // function done() {
+  //   const userData={};
+  //   fetch('/register/data', {  
+  //   method: 'POST',  
+  //   headers: {  
+  //     'Content-Type': 'application/json'  
+  //   },  
+  //   body: JSON.stringify(questions.map(q => ({ question: q.question, value: q.value })))  
+  // })  
+  //   .then(response => {  
+  //     // Handle the response from the server  
+  //     if (response.ok) {  
+  //       console.log('User data sent successfully');  
+  //     } else {  
+  //       console.log('Failed to send user data');  
+  //     }  
+  //   })  
+  //   .catch(error => {  
+  //     console.log('Error occurred while sending user data', error);  
+  //   });  
+    
+  //   // remove the box if there is no next question
+  //   register.className = 'close'
+    
+  //   // add the h1 at the end with the welcome text
+  //   var h1 = document.createElement('h1')
+  //   h1.appendChild(document.createTextNode('Welcome ' + questions[0].value + '!'))
+  //   setTimeout(function() {
+  //     register.parentElement.appendChild(h1)     
+  //     setTimeout(function() {h1.style.opacity = 1}, 50)
+  //   }, eTime)
+    
+  // }
+  // when all the questions have been answered  
+function done() {  
+  // Create an object to hold the user data  
+  const userData = {};  
+  
+  // Loop through the questions and add the question value to the userData object  
+  questions.forEach((question) => {  
+    userData[question.question] = question.value;  
+  });  
+  
+  // Send a POST request to the server  
+  fetch('/register/data', {  
     method: 'POST',  
     headers: {  
       'Content-Type': 'application/json'  
     },  
-    body: JSON.stringify(questions.map(q => ({ question: q.question, value: q.value })))  
+    body: JSON.stringify(userData)  
   })  
     .then(response => {  
       // Handle the response from the server  
@@ -56,19 +99,19 @@ var questions = [
     .catch(error => {  
       console.log('Error occurred while sending user data', error);  
     });  
-    
-    // remove the box if there is no next question
-    register.className = 'close'
-    
-    // add the h1 at the end with the welcome text
-    var h1 = document.createElement('h1')
-    h1.appendChild(document.createTextNode('Welcome ' + questions[0].value + '!'))
-    setTimeout(function() {
-      register.parentElement.appendChild(h1)     
-      setTimeout(function() {h1.style.opacity = 1}, 50)
-    }, eTime)
-    
-  }
+  
+  // remove the box if there is no next question  
+  register.className = 'close';  
+  
+  // add the h1 at the end with the welcome text  
+  var h1 = document.createElement('h1');  
+  h1.appendChild(document.createTextNode('Welcome ' + questions[0].value + '!' +'to KIVTECHS.cloud'));  
+  setTimeout(function() {  
+    register.parentElement.appendChild(h1);  
+    setTimeout(function() {h1.style.opacity = 1}, 50);  
+  }, eTime);  
+}  
+
 
   // when submitting the current question
   function validate() {
