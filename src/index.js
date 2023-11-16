@@ -4,6 +4,10 @@ import { ulid } from 'ulid';
 import helmet from 'helmet';  
 import morgan from 'morgan';  
 import path from 'path';  
+import { fileURLToPath } from 'url';  
+  
+const __filename = fileURLToPath(import.meta.url);  
+const __dirname = path.dirname(__filename);  
   
 const app = express();  
 const PORT = process.env.PORT || 3000;  
@@ -18,7 +22,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../views'));  
   
 app.get('/', (req, res) => {  
-  res.render('register'); // Removed .ejs extension as it is not necessary  
+  res.render('register');  
 });  
   
 app.listen(PORT, () => {  
