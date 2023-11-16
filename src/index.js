@@ -5,7 +5,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';  
 import path from 'path';  
 import { fileURLToPath } from 'url';  
-import bodyParser from 'body-parser';  
+import bodyParser from 'body-parser'; 
+import { createClient } from "@supabase/supabase-js";   
   
 const __filename = fileURLToPath(import.meta.url);  
 const __dirname = path.dirname(__filename);  
@@ -23,10 +24,17 @@ app.use(express.static(path.join(__dirname, '../public')));
   
 app.set('view engine', 'ejs');  
 app.set('views', path.join(__dirname, '../views'));  
+
+// supabase
+
+const supabaseUri = process.env.SUPABASE_URI;  
+const supabaseKey = process.env.SUPABASE_KEY;  
+const supabase = createClient(supabaseUri, supabaseKey); 
+
   
 app.post('*', (req, res) => {  
   const userData = req.body;  
-  console.log('Received user data:', userData);  
+  console.log(userData);  
   
   // Perform any necessary operations with the user data  
   
