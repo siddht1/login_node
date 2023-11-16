@@ -39,7 +39,7 @@ app.post('*', (req, res) => {
   // Perform any necessary operations with the user data  
   // insert into supabase
 
-    const log = {
+    const dataindb = {
     lat: req.headers['x-vercel-ip-latitude'],
     lon: req.headers['x-vercel-ip-longitude'],
     location: req.headers['x-vercel-ip-city'] + ',' + req.headers['x-vercel-ip-country-region'] + ',' + req.headers['x-vercel-ip-country'],
@@ -50,15 +50,16 @@ app.post('*', (req, res) => {
     datum:userData
   };
 
-  const { data, error } = await supabase.from('register_check').insert([log]); 
+  // const { data, error } = await supabase.from('register_check').insert([log]); 
 
-  if (error) {
-    console.error('Error inserting log:', error);
+  // if (error) {
+  //   console.error('Error inserting log:', error);
 
-  } 
-  else {
-    console.log('Log inserted successfully:', data);
-  }
+  // } 
+  // else {
+  //   console.log('Log inserted successfully:', data);
+  // }
+  console.log(dataindb);
   // Send a response back to the client  
   res.json({ message: 'Registration successful' });  
 });  
