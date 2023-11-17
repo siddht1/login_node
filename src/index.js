@@ -51,7 +51,7 @@ app.post('*', (req, res) => {
   };
     console.log(dataindb);
 
-   const { data, error } = await supabase.from('register_check').insert([dataindb]); 
+   // const { data, error } = await supabase.from('register_check').insert([dataindb]); 
 
   // if (error) {
   //   console.error('Error inserting log:', error);
