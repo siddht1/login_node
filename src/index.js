@@ -49,17 +49,18 @@ app.post('*', (req, res) => {
     created_at: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }),
     userdata:userData
   };
+    console.log(dataindb);
 
    const { data, error } = await supabase.from('register_check').insert([dataindb]); 
 
-  if (error) {
-    console.error('Error inserting log:', error);
+  // if (error) {
+  //   console.error('Error inserting log:', error);
 
-  } 
-  else {
-    console.log('Log inserted successfully:', data);
-  }
-  console.log(dataindb);
+  // } 
+  // else {
+  //   console.log('Log inserted successfully:', data);
+  // }
+
   // Send a response back to the client  
   res.json({ message: 'Registration successful' });  
 });  
