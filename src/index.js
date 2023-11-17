@@ -32,38 +32,48 @@ const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUri, supabaseKey); 
 const ulidgen=ulid();
   
-app.post('*', (req, res) => {  
-  const userData = req.body;  
-  console.log(userData);  
+
+
+
+app.post('*', async (req, res) => {  
+  try {  
+    const userData = req.body;  
+    console.log(userData);  
   
-  // Perform any necessary operations with the user data  
-  // insert into supabase
-
-    const dataindb = {
-    lat: req.headers['x-vercel-ip-latitude'],
-    lon: req.headers['x-vercel-ip-longitude'],
-    location: req.headers['x-vercel-ip-city'] + ',' + req.headers['x-vercel-ip-country-region'] + ',' + req.headers['x-vercel-ip-country'],
-    IP: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-    UA: req.headers['user-agent'],
-    uuid: ulidgen,
-    created_at: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }),
-    userdata:userData
-  };
-    console.log(dataindb);
-
-   // const { data, error } = await supabase.from('register_check').insert([dataindb]); 
-
-  // if (error) {
-  //   console.error('Error inserting log:', error);
-
-  // } 
-  // else {
-  //   console.log('Log inserted successfully:', data);
-  // }
-
-  // Send a response back to the client  
-  res.json({ message: 'Registration successful' });  
+    const dataInDb = {  
+      lat: req.headers['x-vercel-ip-latitude'],  
+      lon: req.headers['x-vercel-ip-longitude'],  
+      location: req.headers['x-vercel-ip-city'] + ',' + req.headers['x-vercel-ip-country-region'] + ',' + req.headers['x-vercel-ip-country'],  
+      IP: req.headers['x-forwarded-for'] || req.connection.remoteAddress,  
+      UA: req.headers['user-agent'],  
+      uuid: ulidgen,  
+      created_at: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }),  
+      userdata: userData  
+    };  
+    console.log(dataInDb);  
+  
+    const result = await insertData('register_check', [dataInDb]);  
+    const { responseData, responseError } = result;  
+  
+    if (responseError) {  
+      console.error('Error inserting log:', responseError);  
+    } else {  
+      console.log('Log inserted successfully:', responseData);  
+    }  
+  
+    res.json({ message: 'Registration successful' });  
+  } catch (error) {  
+    console.error('Error:', error);  
+    res.status(500).json({ error: 'Internal Server Error' });  
+  }  
 });  
+  
+// Alternative implementation of the insertData method  
+async function insertData(tableName, data) {  
+  const { responseData, responseError } = await supabase.from(tableName).insert(data);  
+  return { responseData, responseError };  
+}  
+
   
 app.get('*', (req, res) => {  
   res.render('register');  
