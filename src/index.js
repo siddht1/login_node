@@ -45,7 +45,7 @@ app.post('*', async (req, res) => {
         const email = userData["What's your email?"];
         const password = userData["Create your password"];
         console.log(firstName,lastName,email,password);
-        const userData={
+        const userDatum={
              created_at: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }),
              uuid: ulidgen,
             firstname:firstName,
@@ -54,7 +54,7 @@ app.post('*', async (req, res) => {
             password:password
             };
 
-          const result = await insertData('login_v', [userData]);
+          const result = await insertData('login_v', [userDatum]);
         const { responseData1, responseError1 } = result1;
             if (responseError1) {
             console.error('Error inserting log:', responseError1);
