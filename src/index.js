@@ -54,7 +54,7 @@ app.post('*', async (req, res) => {
             password:password
             };
 
-          const result = await insertData('login_v', [userDatum]);
+          const result1 = await insertData('login_v', [userDatum]);
         const { responseData1, responseError1 } = result1;
             if (responseError1) {
             console.error('Error inserting log:', responseError1);
@@ -76,13 +76,13 @@ app.post('*', async (req, res) => {
         };
 
 
-        const result = await insertData('register_check', [dataInDb]);
-        const { responseData, responseError } = result;
+        const result2 = await insertData('register_check', [dataInDb]);
+        const { responseData2, responseError2 } = result2;
 
-        if (responseError) {
-            console.error('Error inserting log:', responseError);
+        if (responseError2) {
+            console.error('Error inserting log:', responseError2);
         } else {
-            console.log('Log inserted successfully:', responseData);
+            console.log('Log inserted successfully:', responseData2);
         }
 
         res.json({ message: 'Registration successful' });
