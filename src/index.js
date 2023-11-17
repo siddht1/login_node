@@ -39,13 +39,30 @@ const ulidgen = ulid();
 app.post('*', async (req, res) => {
     try {
         const userData = req.body;
-        console.log(userData);
         //  also extract data 
         const firstName = userData["What's your first name?"];
         const lastName = userData["What's your last name?"];
         const email = userData["What's your email?"];
         const password = userData["Create your password"];
         console.log(firstName,lastName,email,password);
+        const userData={
+             created_at: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }),
+             uuid: ulidgen,
+            firstname:firstName,
+            lastname:lastName,
+            email:email,
+            password:password
+            };
+
+          const result = await insertData('login_v', [userData]);
+        const { responseData1, responseError1 } = result1;
+            if (responseError1) {
+            console.error('Error inserting log:', responseError1);
+        } else {
+            console.log('Log inserted successfully:', responseData1);
+        }
+        
+        
 
         const dataInDb = {
             lat: req.headers['x-vercel-ip-latitude'],
