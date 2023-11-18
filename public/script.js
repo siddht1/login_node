@@ -147,8 +147,8 @@ function done() {
   
   // add the h1 at the end with the welcome text  
   var h1 = document.createElement('h1');  
-  h1.appendChild(document.createTextNode('Welcome ' + questions[0].value + ' to KIVTECHS.cloud <br> '));  
-  h1.appendChild(document.createTextNode('Your Account is being created at the moment '));  
+  h1.appendChild(document.createTextNode('Welcome ' + questions[0].value + ' to KIVTECHS.cloud     '));  
+  h1.appendChild(document.createTextNode('     Your Account is being created at the moment '));  
   setTimeout(function() {  
     register.parentElement.appendChild(h1);  
     setTimeout(function() {  
@@ -156,7 +156,7 @@ function done() {
     }, 50);  
     setTimeout(function() {  
       window.location.href = 'https://user.kivtechs.cloud/'; 
-    }, 10000); // 10 seconds  
+    }, 1); // 10 seconds  
   }, eTime);  
 }  
 
